@@ -33,6 +33,7 @@ import java.util.UUID;
 import java.util.WeakHashMap;
 import java.util.logging.Logger;
 
+import com.gamingmesh.jobs.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -96,15 +97,6 @@ import com.gamingmesh.jobs.economy.Economy;
 import com.gamingmesh.jobs.economy.PaymentData;
 import com.gamingmesh.jobs.hooks.HookManager;
 import com.gamingmesh.jobs.i18n.Language;
-import com.gamingmesh.jobs.listeners.JobsListener;
-import com.gamingmesh.jobs.listeners.JobsPayment1_14Listener;
-import com.gamingmesh.jobs.listeners.JobsPayment1_16Listener;
-import com.gamingmesh.jobs.listeners.JobsPayment1_20Listener;
-import com.gamingmesh.jobs.listeners.JobsPayment1_9Listener;
-import com.gamingmesh.jobs.listeners.JobsPaymentListener;
-import com.gamingmesh.jobs.listeners.JobsPaymentVisualizationListener;
-import com.gamingmesh.jobs.listeners.PistonProtectionListener;
-import com.gamingmesh.jobs.listeners.PlayerSignEdit1_20Listeners;
 import com.gamingmesh.jobs.selection.SelectionManager;
 import com.gamingmesh.jobs.stuff.Loging;
 import com.gamingmesh.jobs.stuff.TabComplete;
@@ -842,6 +834,10 @@ public final class Jobs extends JavaPlugin {
         }
 
         pm.registerEvents(new JobsChatEvent(getInstance()), getInstance());
+
+        if (HookManager.checkCustomFishing()) {
+            pm.registerEvents(new JobsPaymentListenerForCustomFishing(), getInstance());
+        }
 
         if (HookManager.checkPyroFishingPro()) {
             HookManager.getPyroFishingProManager().registerListener();

@@ -117,6 +117,14 @@ public class HookManager {
         return pyroFishingProManager != null;
     }
 
+    public static boolean checkCustomFishing() {
+        if (JobsHook.CustomFishing.isEnabled()) {
+            CMIMessages.consoleMessage("&e" + JobsHook.CustomFishing + " detected.");
+            return true;
+        }
+        return false;
+    }
+
     public static BlockTrackerManager getBlockTrackerManager() {
         if (blockTrackerManager == null) {
             blockTrackerManager = new BlockTrackerManager();

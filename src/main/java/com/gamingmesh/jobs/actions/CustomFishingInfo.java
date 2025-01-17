@@ -4,8 +4,7 @@ import com.gamingmesh.jobs.container.ActionType;
 import com.gamingmesh.jobs.container.BaseActionInfo;
 
 public class CustomFishingInfo extends BaseActionInfo {
-
-    private String name;
+    private final String name;
 
     public CustomFishingInfo(String name, ActionType type) {
         super(type);
