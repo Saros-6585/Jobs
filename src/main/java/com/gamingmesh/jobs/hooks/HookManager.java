@@ -1,6 +1,5 @@
 package com.gamingmesh.jobs.hooks;
 
-import com.gamingmesh.jobs.hooks.CustomFishing.CustomFishingManager;
 import com.gamingmesh.jobs.hooks.blockTracker.BlockTrackerManager;
 import com.gamingmesh.jobs.hooks.pyroFishingPro.PyroFishingProManager;
 import org.bukkit.plugin.PluginManager;
@@ -19,7 +18,6 @@ import com.gamingmesh.jobs.hooks.wildStacker.WildStackerHandler;
 
 import net.Zrips.CMILib.Messages.CMIMessages;
 import net.Zrips.CMILib.Version.Schedulers.CMIScheduler;
-import org.checkerframework.checker.units.qual.C;
 
 public class HookManager {
 
@@ -31,7 +29,6 @@ public class HookManager {
     private static WildStackerHandler wildStackerHandler;
     private static BlockTrackerManager blockTrackerManager;
     private static PyroFishingProManager pyroFishingProManager;
-    private static CustomFishingManager customFishingManager;
 
     private static final Jobs PLUGIN = JavaPlugin.getPlugin(Jobs.class);
 
@@ -48,7 +45,6 @@ public class HookManager {
             setWildStackerHandler();
             setBlockTrackerManager();
             setPyroFishingProManager();
-            setCustomFishingManager();
         });
     }
 
@@ -100,13 +96,6 @@ public class HookManager {
             pyroFishingProManager = new PyroFishingProManager();
 
         return pyroFishingProManager;
-    }
-
-    public static CustomFishingManager getCustomFishingManager() {
-        if (customFishingManager == null)
-            customFishingManager = new CustomFishingManager();
-
-        return customFishingManager;
     }
 
     public static boolean checkMythicMobs() {
@@ -199,13 +188,6 @@ public class HookManager {
         if (JobsHook.PyroFishingPro.isEnabled()) {
             pyroFishingProManager = new PyroFishingProManager();
             CMIMessages.consoleMessage("&e" + JobsHook.PyroFishingPro + " detected.");
-        }
-    }
-
-    private static void setCustomFishingManager() {
-        if (JobsHook.CustomFishing.isEnabled()) {
-            customFishingManager = new CustomFishingManager();
-            CMIMessages.consoleMessage("&e" + JobsHook.CustomFishing + " detected.");
         }
     }
 }
